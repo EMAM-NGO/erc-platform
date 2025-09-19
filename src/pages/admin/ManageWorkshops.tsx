@@ -169,7 +169,7 @@ const ManageWorkshops = () => {
     fetchWorkshops();
 
     const subscription = supabase.channel('public:workshops')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'workshops' }, payload => {
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'workshops' }, _payload => {
         fetchWorkshops();
       })
       .subscribe();
@@ -266,5 +266,6 @@ const ManageWorkshops = () => {
     </div>
   );
 };
+
 
 export default ManageWorkshops;
