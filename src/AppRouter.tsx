@@ -5,8 +5,9 @@ import LoginLayout from './components/LoginLayout';
 import DashboardLayout from './components/DashboardLayout';
 import AdminLayout from './components/AdminLayout';
 
-// Protector Component
+// Protector Components
 import AdminRoute from './components/AdminRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages
 import Home from './pages/Home';
@@ -34,16 +35,18 @@ const AppRouter = () => {
         </Route>
 
         {/* User Dashboard Routes use DashboardLayout */}
-        <Route path="/" element={<DashboardLayout />}>
-          <Route index element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="workshops" element={<Dashboard />} />
-          <Route path="sessions" element={<RecordedSessions />} />
-          <Route path="results" element={<ExamResults />} />
-          <Route path="workshops/:workshopId" element={<WorkshopDetails />} />
-          <Route path="challenge/:challengeId" element={<CodingChallenge />} />          
-          <Route path="references" element={<References />} />
-          <Route path="archive" element={<Archive />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<DashboardLayout />}>
+            <Route index element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route path="workshops" element={<Dashboard />} />
+            <Route path="sessions" element={<RecordedSessions />} />
+            <Route path="results" element={<ExamResults />} />
+            <Route path="workshops/:workshopId" element={<WorkshopDetails />} />
+            <Route path="challenge/:challengeId" element={<CodingChallenge />} />
+            <Route path="references" element={<References />} />
+            <Route path="archive" element={<Archive />} />
+          </Route>
         </Route>
 
         {/* Protected Admin Routes use AdminLayout */}
